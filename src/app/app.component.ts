@@ -9,16 +9,14 @@ import { AppareilService } from './services/appareil.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
+  ngOnInit(): void {
+    throw new Error("Method not implemented.");
+  }
 
   isAuth = false;
   appareils:any[];
 
-  lastUpdate = new Promise((resolve,reject) => {
-    const date = new Date();
-    setTimeout(() => {
-      resolve(date)
-    }, 2000);;
-  });
+
 
   constructor( private appareilService: AppareilService){
     setTimeout(
@@ -28,19 +26,4 @@ export class AppComponent implements OnInit{
     );
   }
 
-  ngOnInit() {
-    this.appareils = this.appareilService.appareils;
-  }
-   
-  onAllumer(){
-    this.appareilService.switchOnAll();
-  }
-
-  onEteindre() {
-    if(confirm('valider ou pas ')){
-      this.appareilService.switchOffAll();
-    } else {
-      return null;
-    }
-  }
 }
